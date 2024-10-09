@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginFragment"
+    android:padding="12dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_marginTop="12dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email :"
+        android:textSize="20sp"
+        />
+
+    <EditText
+        android:id="@+id/email_et"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:hint="Email"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:layout_marginTop="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="password :"
+        android:textSize="20sp"
+        />
+
+    <EditText
+        android:id="@+id/password_et"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:hint="password"
+        android:textSize="16sp"/>
+
+    <Button
+        android:id="@+id/login_btn"
+        android:layout_margin="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:textSize="22sp"
+        android:layout_gravity="center"
+        android:background="@drawable/button_style"
+        />
+
+
+
+    <TextView
+        android:id="@+id/goto_signup"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="signup"
+        android:textSize="16sp"
+        android:layout_gravity="center"
+        android:textColor="@color/lightpurple"/>
+
+    <CheckBox
+        android:id="@+id/rememberme_ckb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="remember me "
+        android:layout_gravity="center"/>
+
+
+
+</LinearLayout>

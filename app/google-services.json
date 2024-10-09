@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "175392494429",
+    "project_id": "fitness-app-fddb3",
+    "storage_bucket": "fitness-app-fddb3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:175392494429:android:a41fbaa5a2d1c2ae4a0eb4",
+        "android_client_info": {
+          "package_name": "com.example.fitnesstrackerapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVvdw0djFs9l814fwj4m7ghQR9bhBKksk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
