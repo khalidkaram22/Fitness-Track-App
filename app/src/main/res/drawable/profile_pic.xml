@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+        <solid android:color="@android:color/transparent"/>
+
+        <corners android:radius="1000dp"/> <!-- Make the corners rounded to 50% -->
+
+        <!-- Optional: Add a border to the circular image -->
+        <stroke
+            android:width="2dp"
+            android:color="@android:color/darker_gray"
+            tools:src="@mipmap/ic_launcher_round" />
+    </shape>
+

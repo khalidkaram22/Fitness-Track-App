@@ -56,7 +56,15 @@ dependencies {
     implementation ("com.google.android.material:material:1.9.0")
     implementation ("androidx.appcompat:appcompat:1.6.1")
 
-// firebase
+    // firebase
     implementation(platform("com.google.firebase:firebase-bom:33.4.0"))
     implementation("com.google.firebase:firebase-auth")
+
+
+    // Retrofit and Gson converter
+    implementation ("com.squareup.retrofit2:retrofit:2.11.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
+   
+    // glide
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
 }

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="profile_item">
+        <item name="android:layout_margin">32dp</item>
+        <item name="android:textColor">@color/blackpurple</item>
+        <item name="android:textSize">16dp</item>
+    </style>
+
+    <style name="profile_et">
+        <item name="android:textColor">@color/blackpurple</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:drawableEnd">@drawable/ic_edit</item>
+        <item name="android:drawablePadding">8dp</item>
+        <item name="android:drawableTint">@color/lightpurple</item>
+    </style>
+
+
+
+</resources>
