@@ -8,26 +8,46 @@
     tools:context=".HomeFragment">
 
 
-    <EditText
-        android:id="@+id/editTextFood"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter food name" />
 
-    <Button
-        android:id="@+id/buttonSearch"
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Search" />
+        tools:text="Total calories"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:textSize="24sp"
+        />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:paddingTop="16dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_food"/>
+
+    <TextView
+        android:id="@+id/total_calories"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="2000 cal"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:textSize="24sp"
+        android:padding="8dp"
+        android:background="@drawable/edit_text_style"
+        />
+
+
+    <Button
+        android:id="@+id/go_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="search"
+        android:drawableEnd="@drawable/ic_search"
+        android:drawableTint="@color/whitepurple"
+        android:background="@drawable/button_style"
+        />
+
+
+
+
 
 
 </LinearLayout>

@@ -98,6 +98,7 @@ class ProfileFragment : Fragment() {
                             binding.profileHeightEt.setText(it.height)
                             binding.profileWeightEt.setText(it.weight)
                             binding.profileAgeEt.setText(it.age)
+                            binding.profileNameEt.setText(it.userName)
                             binding.emailSpace.text = it.email
                         }
                     } else {

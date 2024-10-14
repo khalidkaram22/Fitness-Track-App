@@ -55,7 +55,8 @@ dependencies {
     implementation ("androidx.navigation:navigation-ui-ktx:2.8.2")
     implementation ("com.google.android.material:material:1.9.0")
     implementation ("androidx.appcompat:appcompat:1.6.1")
-
+    
+    implementation ("androidx.core:core-ktx:1.10.1")
     // firebase
     implementation(platform("com.google.firebase:firebase-bom:33.4.0"))
     implementation("com.google.firebase:firebase-auth")
@@ -68,4 +69,7 @@ dependencies {
    
     // glide
     implementation ("com.github.bumptech.glide:glide:4.16.0")
+
+
+
 }

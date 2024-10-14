@@ -36,12 +36,24 @@
             android:layout_height="wrap_content"
             android:textSize="14sp"
             tools:text="500 cal"/>
+
         <TextView
             android:id="@+id/textViewFat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14sp"
             tools:text="500 cal"/>
+
+
+        <Button
+            android:id="@+id/add_food"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_add"
+            android:drawableTint="@color/whitepurple"
+            android:text="Add food"
+            android:layout_gravity="center"
+            />
 
 
 </LinearLayout>
