@@ -73,8 +73,9 @@ class LoginFragment : Fragment() {
                         if (binding.remembermeCkb.isChecked) {
                             saveLoginState(email, password)
                         }
-
-                        startActivity(Intent(requireActivity(), MainActivity::class.java))
+                        val mainIntent = Intent(requireActivity() , MainActivity::class.java)
+                        mainIntent.putExtra("user", auth.currentUser!!.uid)
+                        startActivity(mainIntent)
                         requireActivity().finish()
                     }
                     else{

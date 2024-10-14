@@ -22,5 +22,17 @@
         <action
             android:id="@+id/action_signUpFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_signUpFragment_to_userDetailsFragment"
+            app:destination="@id/userDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userDetailsFragment"
+        android:name="com.example.fitnesstrackerapp.UserDetailsFragment"
+        android:label="fragment_user_details"
+        tools:layout="@layout/fragment_user_details" >
+        <action
+            android:id="@+id/action_userDetailsFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
     </fragment>
 </navigation>

@@ -36,14 +36,28 @@
         android:layout_marginBottom="32dp"
         android:text="Name : "
         android:textColor="@color/whitepurple"
-        android:textSize="18sp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@id/profile_image"
         app:layout_constraintStart_toEndOf="@id/profile_image"
         app:layout_constraintTop_toTopOf="@id/profile_image" />
 
+
+    <TextView
+        android:id="@+id/email_space"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" "
+        android:textColor="@color/whitepurple"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/name_space"
+        app:layout_constraintStart_toStartOf="@id/name_space"
+        tools:text="email@dddd.com"
+        />
+
     <EditText
         android:id="@+id/profile_name_et"
         style="@style/profile_et"
+        android:padding="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/edit_text_style"
@@ -63,13 +77,12 @@
         app:layout_constraintTop_toBottomOf="@+id/view_profile" />
 
     <EditText
-        android:id="@+id/age_et"
+        android:id="@+id/profile_age_et"
         style="@style/profile_et"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/edit_text_style"
-        android:text="18"
-
+        tools:text="18"
         app:layout_constraintBottom_toBottomOf="@+id/age_space"
         app:layout_constraintStart_toEndOf="@+id/age_space"
         app:layout_constraintTop_toTopOf="@+id/age_space" />
@@ -85,12 +98,12 @@
         app:layout_constraintTop_toBottomOf="@+id/age_space" />
 
     <EditText
-        android:id="@+id/height_et"
+        android:id="@+id/profile_height_et"
         style="@style/profile_et"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/edit_text_style"
-        android:text="cm"
+        tools:text="cm"
         app:layout_constraintBottom_toBottomOf="@+id/height_space"
         app:layout_constraintStart_toEndOf="@+id/height_space"
         app:layout_constraintTop_toTopOf="@+id/height_space" />
@@ -105,27 +118,26 @@
         app:layout_constraintTop_toBottomOf="@+id/height_space" />
 
     <EditText
-        android:id="@+id/weight_et"
+        android:id="@+id/profile_weight_et"
         style="@style/profile_et"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/edit_text_style"
-        android:text="kg"
+        tools:text="kg"
         app:layout_constraintBottom_toBottomOf="@+id/weight_space"
         app:layout_constraintStart_toEndOf="@+id/weight_space"
         app:layout_constraintTop_toTopOf="@+id/weight_space" />
 
 
     <Button
-        android:id="@+id/edit_btn"
+        android:id="@+id/apply_edit_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@drawable/button_style"
-        android:text="Apply Chande"
-        android:visibility="invisible"
-        app:layout_constraintStart_toEndOf="@+id/weight_et"
-        app:layout_constraintTop_toBottomOf="@id/weight_et" />
+        android:text="Apply Change"
+        app:layout_constraintStart_toEndOf="@+id/profile_weight_et"
+        app:layout_constraintTop_toBottomOf="@id/profile_weight_et" />
 
 
     <TextView
@@ -138,7 +150,7 @@
         android:drawableTint="@color/lightpurple"
         android:text="logout"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/apply_edit_btn" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
