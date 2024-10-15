@@ -1,5 +1,6 @@
 package com.example.fitnesstrackerapp
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -63,6 +64,7 @@ class SearchFragment : Fragment() {
     private fun fetchFoodCalories(foodName: String) { // Accept foodName as a parameter
         val call = foodCall.searchFoods("YqOgVlIserssGg1iNNkz7LZcdW8WK3xzJn711zTc")
         call.enqueue(object : Callback<List<FoodItem>> {
+            @SuppressLint("NotifyDataSetChanged")
             override fun onResponse(call: Call<List<FoodItem>>, response: Response<List<FoodItem>>) {
                 if (response.isSuccessful) {
                     val items = response.body() ?: emptyList()
@@ -83,16 +85,19 @@ class SearchFragment : Fragment() {
                     }
 
                     adapter.notifyDataSetChanged() // Notify adapter to refresh data
+
                 } else {
-                    println("Error: ${response.code()} - ${response.message()}")
+
                 }
             }
 
             override fun onFailure(call: Call<List<FoodItem>>, t: Throwable) {
-                println("Failure: ${t.message}")
+
             }
+
         })
     }
+
 }
 
 

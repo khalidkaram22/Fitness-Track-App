@@ -93,6 +93,7 @@ class ProfileFragment : Fragment() {
                 .addOnSuccessListener { document ->
                     if (document != null && document.exists()) {
                         val userDetails = document.toObject(UserDetails::class.java)
+
                         userDetails?.let {
                             // Update UI with user details
                             binding.profileHeightEt.setText(it.height)

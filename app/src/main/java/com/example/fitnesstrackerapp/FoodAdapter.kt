@@ -1,11 +1,21 @@
 package com.example.fitnesstrackerapp
 
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
+import android.os.Build
+
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity.NOTIFICATION_SERVICE
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.fitnesstrackerapp.databinding.FragmentSearchBinding
 import com.example.fitnesstrackerapp.databinding.ItemFoodBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -18,18 +28,21 @@ class FoodAdapter(private val foodList: List<FoodItem>) :
 
     class FoodViewHolder(private val binding: ItemFoodBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
         private lateinit var db: FirebaseFirestore
         private val user = Firebase.auth.currentUser
+
+        private val CHANNEL_ID = "fitness_goals_channel"
+        private val NOTIFICATION_ID = 1001
 
         fun bind(foodItem: FoodItem) {
             binding.textViewFoodName.text = foodItem.description
 
-            Log.d("trace", "foodItem_adapter : $foodItem")
+//            Log.d("trace", "foodItem_adapter : $foodItem")
 
 //            val calories = foodItem.foodNutrients.find { it.name == "Energy" }?.amount ?: 0.0
 
             val calories = foodItem.foodNutrients.find { it.name == "Energy" }
-
             val amount = calories?.amount.toString()
             val unitname = calories?.unitName.toString()
 
@@ -39,7 +52,6 @@ class FoodAdapter(private val foodList: List<FoodItem>) :
             // protien
 
             val protein = foodItem.foodNutrients.find { it.name == "Protein" }
-
             val proteinAmount = protein?.amount.toString()
             val proteinUnitName = protein?.unitName.toString()
 
@@ -49,7 +61,6 @@ class FoodAdapter(private val foodList: List<FoodItem>) :
             // carb
 
             val carb = foodItem.foodNutrients.find { it.name == "Carbohydrate, by difference" }
-
             val carbAmount = carb?.amount.toString()
             val carbUnitName = carb?.unitName.toString()
 
@@ -58,7 +69,6 @@ class FoodAdapter(private val foodList: List<FoodItem>) :
             // fats
 
             val fats = foodItem.foodNutrients.find { it.name == "Total lipid (fat)" }
-
             val fatAmount = fats?.amount.toString()
             val fatUnitName = fats?.unitName.toString()
 
@@ -76,27 +86,66 @@ class FoodAdapter(private val foodList: List<FoodItem>) :
                     "enrgy" to calories?.amount.toString(),
                     "protien" to protein?.amount.toString(),
                     "carb" to carb?.amount.toString(),
-                    "fats" to fats?.amount.toString()
+                    "fats" to fats?.amount.toString(),
+                    "user uid" to uid
                 )
 
-                    if (uid != null) {
-                        db.collection("AddFood")
-                            .document(uid)
-                            .set(food)
-                            .addOnSuccessListener {
-                                // Successfully added details
-                                Log.d("Firestore", "food added")
-                            }
-                            .addOnFailureListener { e ->
-                                // Error adding details
-                                Log.w("Firestore", "Error writing document", e)
-                            }
-                    }
+                if (uid != null) {
+                    db.collection("AddFood")
+                        .document()
+                        .set(food)
+                        .addOnSuccessListener {
+                            // Successfully added details
+//                            sendNotification()
+                            Log.d("Firestore", "food added")
+                        }
+                        .addOnFailureListener { e ->
+                            // Error adding details
+                            Log.w("Firestore", "Error writing document", e)
+                        }
+                }
 
             }
 
-            // Default image if no URL
+
+
+//            createNotificationChannel()
+
         }
+
+        // Create the NotificationChannel (required for Android 8+)
+//        private fun createNotificationChannel() {
+//            // Only create the notification channel on Android 8+ (API 26+)
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//                val name = "Fitness Goals"
+//                val descriptionText = "Reminders to check your fitness goals"
+//                val importance = NotificationManager.IMPORTANCE_DEFAULT
+//                val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
+//                    description = descriptionText
+//                }
+//                // Register the channel with the system
+//                val context = SearchFragment().requireContext()
+//                val notificationManager: NotificationManager =
+//                    context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+//                notificationManager.createNotificationChannel(channel)
+//            }
+//        }
+//
+//        private fun sendNotification() {
+//            // Build the notification
+//            val context = SearchFragment().requireContext()
+//            val builder = NotificationCompat.Builder(context, CHANNEL_ID)
+//                .setSmallIcon(R.drawable.ic_notifications) // Use your app icon or notification icon here
+//                .setContentTitle("Fitness App")
+//                .setContentText("your food is added")
+//                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+//
+//            // Send the notification
+//            with(NotificationManagerCompat.from(context)) {
+//                notify(NOTIFICATION_ID, builder.build())
+//            }
+//        }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodViewHolder {

@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:padding="8dp">
 
 
-
         <TextView
-            android:id="@+id/textViewFoodName"
+            android:id="@+id/textViewFoodName_home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"
@@ -17,28 +16,28 @@
             tools:text="food"/>
 
         <TextView
-            android:id="@+id/textViewCalories"
+            android:id="@+id/textViewCalories_home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14sp"
             tools:text="500 cal"/>
 
         <TextView
-            android:id="@+id/textViewProtien"
+            android:id="@+id/textViewProtien_home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14sp"
             tools:text="500 cal"/>
 
         <TextView
-            android:id="@+id/textViewCarb"
+            android:id="@+id/textViewCarb_home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14sp"
             tools:text="500 cal"/>
 
         <TextView
-            android:id="@+id/textViewFat"
+            android:id="@+id/textViewFat_home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14sp"
@@ -46,12 +45,12 @@
 
 
         <Button
-            android:id="@+id/add_food"
+            android:id="@+id/delete_food_home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableEnd="@drawable/ic_add_circle_outline"
+            android:drawableEnd="@drawable/icremove_circle_outline"
             android:drawableTint="@color/whitepurple"
-            android:text="Add food"
+            android:text="Delete food"
             android:layout_gravity="center"
             />
 
