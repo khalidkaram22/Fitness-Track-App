@@ -25,14 +25,13 @@
         android:label="fragment_exercises"
         tools:layout="@layout/fragment_exercises" />
     <fragment
-        android:id="@+id/chartFragment"
-        android:name="com.example.fitnesstrackerapp.chartFragment"
-        android:label="fragment_chart"
-        tools:layout="@layout/fragment_chart" />
-    <fragment
         android:id="@+id/searchFragment"
         android:name="com.example.fitnesstrackerapp.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
 
 </navigation>

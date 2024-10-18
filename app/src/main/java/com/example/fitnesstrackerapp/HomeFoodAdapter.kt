@@ -1,50 +1,48 @@
 package com.example.fitnesstrackerapp
 
-import android.content.Intent
+
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.startActivity
-import androidx.navigation.fragment.FragmentNavigatorExtras
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fitnesstrackerapp.databinding.ItemAddedfoodBinding
-import com.example.fitnesstrackerapp.databinding.ItemFoodBinding
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 
-class HomeFoodAdapter(private var foodDetails: MutableList<FoodDetails>) :
+class HomeFoodAdapter(private var foodDetails: MutableList<FoodDetails> , private val date: String) :
     RecyclerView.Adapter<HomeFoodAdapter.FoodViewHolder>() {
 
     class FoodViewHolder(private val binding: ItemAddedfoodBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        private val user = Firebase.auth.currentUser
 
-        fun bind(foodDetails: FoodDetails, deleteCallback: (FoodDetails) -> Unit) {
+
+        fun bind(foodDetails: FoodDetails, date: String, deleteCallback: (FoodDetails) -> Unit) {
+
             binding.textViewFoodNameHome.text = foodDetails.name
 
             // calories (Energy)
             val calories = foodDetails.enrgy
-            binding.textViewCaloriesHome.text = calories?.let { "calories $calories" } ?: "N/A"
+            binding.textViewCaloriesHome.text = calories.let { "calories $calories" } ?: "N/A"
 
             // protein
             val protein = foodDetails.protien
-            binding.textViewProtienHome.text = protein?.let { "Protein $protein" } ?: "N/A"
+            binding.textViewProtienHome.text = protein.let { "Protein $protein" } ?: "N/A"
 
             // carb
             val carb = foodDetails.carb
-            binding.textViewCarbHome.text = carb?.let { "carb $carb" } ?: "N/A"
+            binding.textViewCarbHome.text = carb.let { "carb $carb" } ?: "N/A"
 
             // fats
             val fats = foodDetails.fats
-            binding.textViewFatHome.text = fats?.let { "fats $fats" } ?: "N/A"
+            binding.textViewFatHome.text = fats.let { "fats $fats" } ?: "N/A"
 
             binding.deleteFoodHome.setOnClickListener {
                 deleteCallback(foodDetails)
             }
         }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodViewHolder {
@@ -58,7 +56,7 @@ class HomeFoodAdapter(private var foodDetails: MutableList<FoodDetails>) :
 
     override fun onBindViewHolder(holder: FoodViewHolder, position: Int) {
         val foodItem = foodDetails[position]
-        holder.bind(foodItem) { foodToDelete ->
+        holder.bind(foodItem , date) { foodToDelete ->
             deleteFoodItem(foodToDelete, position)
         }
     }
@@ -69,6 +67,7 @@ class HomeFoodAdapter(private var foodDetails: MutableList<FoodDetails>) :
         val uid = Firebase.auth.currentUser?.uid
         db.collection("AddFood").whereEqualTo("user uid", uid)
             .whereEqualTo("name", foodToDelete.name)
+            .whereEqualTo("date",date)
             .get()
             .addOnSuccessListener { querySnapshot ->
                 for (document in querySnapshot.documents) {
@@ -87,5 +86,6 @@ class HomeFoodAdapter(private var foodDetails: MutableList<FoodDetails>) :
                 }
             }
     }
+
 
 }

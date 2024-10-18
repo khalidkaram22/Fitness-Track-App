@@ -8,8 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.fitnesstrackerapp.databinding.FragmentHomeBinding
 import com.example.fitnesstrackerapp.databinding.FragmentSearchBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -24,12 +25,17 @@ class SearchFragment : Fragment() {
     private lateinit var foodCall: FoodCallable
     private lateinit var adapter: FoodAdapter
     private var foodList: MutableList<FoodItem> = mutableListOf()
+    private val dateModel: DateViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
+
+        binding.backToHome.setOnClickListener {
+            findNavController().navigate(R.id.action_searchFragment_to_homeFragment)
+        }
 
         // Initialize Retrofit
         val retrofit = Retrofit.Builder()
@@ -39,8 +45,11 @@ class SearchFragment : Fragment() {
 
         foodCall = retrofit.create(FoodCallable::class.java)
 
+
+        val date =dateModel.dateLiveData.value.toString()
+
         // Set up the RecyclerView
-        adapter = FoodAdapter(foodList)
+        adapter = FoodAdapter(foodList,date)
         Log.d("trace", "foodList : $foodList")
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = adapter
@@ -61,7 +70,7 @@ class SearchFragment : Fragment() {
     }
 
 
-    private fun fetchFoodCalories(foodName: String) { // Accept foodName as a parameter
+    private fun fetchFoodCalories(foodName: String) {
         val call = foodCall.searchFoods("YqOgVlIserssGg1iNNkz7LZcdW8WK3xzJn711zTc")
         call.enqueue(object : Callback<List<FoodItem>> {
             @SuppressLint("NotifyDataSetChanged")
@@ -80,14 +89,13 @@ class SearchFragment : Fragment() {
                             Log.d("trace", "foodlist : $foodList")
                         }
                         else{
-                          //  Toast.makeText(requireContext(),"this food not found",Toast.LENGTH_SHORT).show()
+                           // Toast.makeText(requireContext(),"this food not found",Toast.LENGTH_SHORT).show()
                         }
                     }
-
                     adapter.notifyDataSetChanged() // Notify adapter to refresh data
 
                 } else {
-
+                     Toast.makeText(requireContext(),"response is not Successful",Toast.LENGTH_SHORT).show()
                 }
             }
 

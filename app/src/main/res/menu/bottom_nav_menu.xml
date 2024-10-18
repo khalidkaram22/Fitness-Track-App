@@ -10,10 +10,10 @@
         android:icon="@drawable/ic_run"
         android:title="Exercise" />
 
-    <item
-        android:id="@+id/nav_chart"
-        android:icon="@drawable/ic_chart"
-        android:title="Chart" />
+<!--    <item-->
+<!--        android:id="@+id/nav_chart"-->
+<!--        android:icon="@drawable/ic_chart"-->
+<!--        android:title="Chart" />-->
 
     <item
         android:id="@+id/nav_profile"

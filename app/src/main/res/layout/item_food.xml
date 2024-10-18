@@ -1,59 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:padding="8dp">
 
 
+    <TextView
+        android:id="@+id/textViewFoodName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        tools:text="food name " />
 
-        <TextView
-            android:id="@+id/textViewFoodName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            tools:text="food"/>
+    <TextView
+        android:id="@+id/textViewCalories"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@+id/textViewFoodName"
+        tools:text="500 cal" />
 
-        <TextView
-            android:id="@+id/textViewCalories"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            tools:text="500 cal"/>
+    <TextView
+        android:id="@+id/textViewProtien"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCalories"
+        tools:text="500 cal" />
 
-        <TextView
-            android:id="@+id/textViewProtien"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            tools:text="500 cal"/>
+    <TextView
+        android:id="@+id/textViewCarb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@+id/textViewProtien"
+        tools:text="500 cal" />
 
-        <TextView
-            android:id="@+id/textViewCarb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            tools:text="500 cal"/>
-
-        <TextView
-            android:id="@+id/textViewFat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            tools:text="500 cal"/>
-
-
-        <Button
-            android:id="@+id/add_food"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableEnd="@drawable/ic_add_circle_outline"
-            android:drawableTint="@color/whitepurple"
-            android:text="Add food"
-            android:layout_gravity="center"
-            />
+    <TextView
+        android:id="@+id/textViewFat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCarb"
+        tools:text="500 cal" />
 
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/add_food"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@drawable/ic_add_circle_outline"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

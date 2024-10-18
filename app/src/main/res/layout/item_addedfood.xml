@@ -1,58 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:padding="8dp">
 
 
-        <TextView
-            android:id="@+id/textViewFoodName_home"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            tools:text="food"/>
+    <TextView
+        android:id="@+id/textViewFoodName_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        tools:text="food" />
 
-        <TextView
-            android:id="@+id/textViewCalories_home"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            tools:text="500 cal"/>
+    <TextView
+        android:id="@+id/textViewCalories_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@+id/textViewFoodName_home"
+        tools:text="500 cal" />
 
-        <TextView
-            android:id="@+id/textViewProtien_home"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            tools:text="500 cal"/>
+    <TextView
+        android:id="@+id/textViewProtien_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCalories_home"
+        tools:text="500 cal" />
 
-        <TextView
-            android:id="@+id/textViewCarb_home"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            tools:text="500 cal"/>
+    <TextView
+        android:id="@+id/textViewCarb_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@+id/textViewProtien_home"
+        tools:text="500 cal" />
 
-        <TextView
-            android:id="@+id/textViewFat_home"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            tools:text="500 cal"/>
-
-
-        <Button
-            android:id="@+id/delete_food_home"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableEnd="@drawable/icremove_circle_outline"
-            android:drawableTint="@color/whitepurple"
-            android:text="Delete food"
-            android:layout_gravity="center"
-            />
+    <TextView
+        android:id="@+id/textViewFat_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCarb_home"
+        tools:text="500 cal" />
 
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/delete_food_home"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:drawableTint="@color/whitepurple"
+        android:layout_marginEnd="32dp"
+        android:src="@drawable/icremove_circle_outline"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

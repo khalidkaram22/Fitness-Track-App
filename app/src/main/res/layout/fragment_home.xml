@@ -1,56 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     tools:context=".HomeFragment">
 
 
     <TextView
+        android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Total calories"
-        android:layout_gravity="center"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="8dp"
         android:textSize="24sp"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="16/10/2024" />
+
+    <ImageView
+        android:id="@+id/date_back_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_arrow_back"
+        app:layout_constraintBottom_toBottomOf="@+id/date"
+        app:layout_constraintEnd_toStartOf="@+id/date"
+        app:layout_constraintTop_toTopOf="@+id/date" />
+
+
+    <ImageView
+        android:id="@+id/date_forward_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_arrow_forward"
+        app:layout_constraintBottom_toBottomOf="@+id/date"
+        app:layout_constraintStart_toEndOf="@+id/date"
+        app:layout_constraintTop_toTopOf="@+id/date" />
+
+    <TextView
+        android:id="@+id/total_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="8dp"
+        android:text="Total calories"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/date" />
 
 
     <TextView
         android:id="@+id/total_calories"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="2000 cal"
-        android:layout_gravity="center"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:textSize="24sp"
-        android:padding="8dp"
+        android:layout_margin="8dp"
         android:background="@drawable/edit_text_style"
-        />
+        android:padding="8dp"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/total_tv"
+        tools:text="2000 cal" />
 
 
     <Button
         android:id="@+id/go_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="search"
-        android:drawableEnd="@drawable/ic_search"
-        android:drawableTint="@color/whitepurple"
+        android:layout_margin="16dp"
         android:background="@drawable/button_style"
-        />
+        android:drawableEnd="@drawable/ic_add_circle_outline"
+        android:drawableTint="@color/whitepurple"
+        android:text="Add food"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/total_calories" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_home"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_addedfood"/>
+        app:layout_constraintTop_toBottomOf="@+id/go_search"
+        tools:layout_editor_absoluteX="-200dp"
+        tools:listitem="@layout/item_addedfood" />
 
 
-
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

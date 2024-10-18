@@ -7,6 +7,16 @@
     android:orientation="vertical"
     tools:context=".SearchFragment">
 
+
+    <ImageView
+        android:id="@+id/back_to_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:src="@drawable/ic_arrow_back"
+        />
+
     <EditText
         android:id="@+id/editTextFood"
         android:layout_width="match_parent"
@@ -27,7 +37,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
         android:paddingTop="16dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

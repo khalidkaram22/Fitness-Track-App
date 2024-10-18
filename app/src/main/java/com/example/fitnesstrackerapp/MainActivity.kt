@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity() {
         val builder = NotificationCompat.Builder(this, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_notifications) // Use your app icon or notification icon here
             .setContentTitle("Fitness App")
-            .setContentText("Add your food!")
+            .setContentText("set your wieght statues")
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
         // Send the notification
@@ -94,30 +94,20 @@ class MainActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.nav_profile -> {
                 // Navigate to Profile Fragment
-                Toast.makeText(this, "hello profile", Toast.LENGTH_SHORT).show()
                 navController.navigate(R.id.profileFragment)
                 true
             }
 
             R.id.nav_home -> {
                 // Navigate to Home Fragment
-//                sendNotification()
-                Toast.makeText(this, "hello home", Toast.LENGTH_SHORT).show()
+                sendNotification()
                 navController.navigate(R.id.homeFragment)
                 true
             }
 
             R.id.nav_exercise -> {
                 // Navigate to Exercises Fragment
-                Toast.makeText(this, "your exercise", Toast.LENGTH_SHORT).show()
                 navController.navigate(R.id.exercisesFragment)
-                true
-            }
-
-            R.id.nav_chart -> {
-                // Navigate to Chart Fragment
-                Toast.makeText(this, "chart", Toast.LENGTH_SHORT).show()
-                navController.navigate(R.id.chartFragment)
                 true
             }
 
