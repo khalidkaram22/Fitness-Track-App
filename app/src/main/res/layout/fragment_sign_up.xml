@@ -3,9 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".SignUpFragment"
-    >
+    android:padding="20dp"
+    tools:context=".SignUpFragment">
 
     <TextView
         android:layout_width="wrap_content"
@@ -58,13 +59,14 @@
         android:hint="password"
         android:textSize="16sp" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/signup_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="24dp"
         android:text="signup"
+        app:backgroundTint="@color/navy"
         android:textSize="22sp"
         android:background="@drawable/button_style"/>
 
@@ -75,7 +77,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="8dp"
         android:text="Login"
-        android:textColor="@color/lightpurple"
+        android:textColor="@color/lightnavy"
         android:textSize="16sp" />
 
 

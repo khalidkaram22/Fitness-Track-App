@@ -5,20 +5,41 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
+    android:padding="16dp"
     tools:context=".ExercisesFragment">
 
+    <!-- TextView for displaying distance -->
     <TextView
         android:id="@+id/distanceText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
         android:text="Distance: 0.0 km"
-        android:textSize="18sp"/>
+        android:textSize="24sp" />
 
+    <!-- PieChart for displaying the distance chart -->
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/pieChart"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_marginBottom="24dp" />
+
+    <!-- Start/Pause button -->
     <Button
         android:id="@+id/startButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/navy"
+        android:elevation="4dp"
+        android:paddingStart="32dp"
+        android:paddingTop="12dp"
+        android:paddingEnd="32dp"
+        android:paddingBottom="12dp"
         android:text="Start"
-        android:layout_marginTop="16dp"/>
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
 
 </LinearLayout>

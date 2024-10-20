@@ -45,7 +45,6 @@ class ProfileFragment : Fragment() {
     @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Toast.makeText(requireContext(), "logout", Toast.LENGTH_SHORT).show()
 
          db = FirebaseFirestore.getInstance()
          val uid = FirebaseAuth.getInstance().currentUser?.uid

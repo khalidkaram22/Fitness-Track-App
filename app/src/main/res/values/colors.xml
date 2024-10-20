@@ -7,4 +7,36 @@
     <color name="blackpurple">#2E073F</color>
     <color name="lightpurple">#AD49E1</color>
     <color name="whitepurple">#EBD3F8</color>
+
+
+    <color name="primary_color">#6200EE</color>
+    <color name="light_gray_background">#F5F5F5</color>
+    <color name="primary_text_color">#212121</color>
+    <color name="primary_color_light">#BB86FC</color>
+    <color name="primary_color_dark">#3700B3</color>
+    <color name="secondary_color">#03DAC5</color>
+    <color name="secondary_text_color">#757575</color>
+
+    <color name="card_background_color">#F5F5F5</color>
+    <color name="accent_color">#FF4081</color>
+
+<!--    Purple: #800080 (a rich, deep purple)-->
+<!--    Magenta/Pink: #FF0066 (a vibrant magenta or pinkish hue)-->
+<!--    Orange: #FF7F00 (a warm orange)-->
+<!--    Yellow: #FFD700 (a golden yellow)-->
+
+    <!--navy  == 180161
+    pink == a52367-->
+
+    <color name="navy">#180161</color>
+    <color name="darknavy1">#0F0431</color>
+    <color name="darknavy">#0C0326</color>
+    <color name="lightnavy">#1F9BFA</color>
+    <color name="newbule">#0284E9</color>
+    <color name="blacknavy">#4F1787</color>
+    <color name="pink">#EB3678</color>
+    <color name="orange">#FB773C</color>
+    <color name="grey">#DBD3D3</color>
+
+
 </resources>

@@ -2,6 +2,7 @@ package com.example.fitnesstrackerapp
 
 import android.Manifest
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
@@ -11,14 +12,20 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
+import com.example.fitnesstrackerapp.databinding.FragmentExercisesBinding
+import com.github.mikephil.charting.charts.PieChart
+import com.github.mikephil.charting.data.PieData
+import com.github.mikephil.charting.data.PieDataSet
+import com.github.mikephil.charting.data.PieEntry
 import com.google.android.gms.location.*
 
 class ExercisesFragment : Fragment(), SensorEventListener {
+
+    private var _binding: FragmentExercisesBinding? = null
+    private val binding get() = _binding!!
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var locationCallback: LocationCallback
@@ -28,8 +35,9 @@ class ExercisesFragment : Fragment(), SensorEventListener {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_exercises, container, false)
+    ): View {
+        _binding = FragmentExercisesBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -37,10 +45,7 @@ class ExercisesFragment : Fragment(), SensorEventListener {
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
 
-        val startButton = view.findViewById<Button>(R.id.startButton)
-        val distanceText = view.findViewById<TextView>(R.id.distanceText)
-
-        startButton.setOnClickListener {
+        binding.startButton.setOnClickListener {
             if (isTracking) {
                 stopTracking()
             } else {
@@ -53,17 +58,14 @@ class ExercisesFragment : Fragment(), SensorEventListener {
         locationCallback = object : LocationCallback() {
             override fun onLocationResult(locationResult: LocationResult) {
                 for (location in locationResult.locations) {
-                    // Log the received location
-                    Log.d(
-                        "LocationUpdate",
-                        "New Location: ${location.latitude}, ${location.longitude}"
-                    )
+                    Log.d("LocationUpdate", "New Location: ${location.latitude}, ${location.longitude}")
                     updateDistance(location)
                 }
             }
         }
 
-        updateUI(distanceText)
+        updateUI()
+        updatePieChart()
     }
 
     private val locationPermissionRequest = registerForActivityResult(
@@ -100,7 +102,7 @@ class ExercisesFragment : Fragment(), SensorEventListener {
         }
 
         isTracking = true
-        view?.findViewById<Button>(R.id.startButton)?.text = "Pause"
+        binding.startButton.text = "Pause"
 
         val locationRequest = LocationRequest.create().apply {
             interval = 1000L // Set desired interval for active location updates
@@ -113,32 +115,54 @@ class ExercisesFragment : Fragment(), SensorEventListener {
 
     private fun stopTracking() {
         isTracking = false
-        view?.findViewById<Button>(R.id.startButton)?.text = "Start"
+        binding.startButton.text = "Start"
         fusedLocationClient.removeLocationUpdates(locationCallback)
     }
 
     private fun updateDistance(newLocation: Location) {
         if (previousLocation != null) {
             val distanceBetween = previousLocation!!.distanceTo(newLocation)
-            if (distanceBetween > 5) { // Update only if moved more than 5 meters
-                distance += distanceBetween / 1000.0 // Convert to kilometers
-                updateUI(view?.findViewById(R.id.distanceText)!!)
+            if (distanceBetween > 5) {
+                distance += distanceBetween / 1000.0
+                updateUI()
+                updatePieChart()
             }
         }
         previousLocation = newLocation
     }
 
-    private fun updateUI(distanceText: TextView) {
-        distanceText.text = "Distance: %.2f km".format(distance)
+    private fun updatePieChart() {
+        val entries = mutableListOf<PieEntry>()
+        entries.add(PieEntry(distance.toFloat(), "Distance"))
+        entries.add(PieEntry((10 - distance).toFloat(), "Remaining"))
+
+        val dataSet = PieDataSet(entries, "Exercise")
+        val customColors = listOf(
+            Color.parseColor("#EB3678"), // Pink
+            Color.parseColor("#FF7F00") // Orange
+        )
+
+        dataSet.colors = customColors
+
+        val pieData = PieData(dataSet)
+        binding.pieChart.data = pieData
+        binding.pieChart.invalidate() // Refresh the chart
+    }
+
+    private fun updateUI() {
+        binding.distanceText.text = "Distance: %.2f km".format(distance)
     }
 
     override fun onSensorChanged(event: SensorEvent?) {
-        TODO("Not yet implemented")
+        // Implement sensor logic here
     }
 
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
-        TODO("Not yet implemented")
+        // Implement accuracy change logic here
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
-
-

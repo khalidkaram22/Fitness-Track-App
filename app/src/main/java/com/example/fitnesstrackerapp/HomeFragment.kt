@@ -26,10 +26,7 @@ class HomeFragment : Fragment() {
 
 
     private lateinit var adapter: HomeFoodAdapter
-    private var foodList: MutableList<FoodDetails> = mutableListOf()
-    private var calories : Double = 0.0
-    private val viewModel: DateViewModel by activityViewModels()
-    private lateinit var db: FirebaseFirestore
+    private val homeViewModel: HomeViewModel by activityViewModels()
     private val dateModel: DateViewModel by activityViewModels()
 
 
@@ -41,38 +38,49 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-    @SuppressLint("ClickableViewAccessibility")
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        fetchAddedFood()
+
 
         val date = dateModel.dateLiveData.value.toString()
 
         // Set up the RecyclerView
-        adapter = HomeFoodAdapter(foodList, date)
+        adapter = HomeFoodAdapter(mutableListOf(), date)
         binding.recyclerViewHome.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerViewHome.adapter = adapter
 
 
-        // Observe the date and update the UI when it changes
-        viewModel.dateLiveData.observe(viewLifecycleOwner) { newDate ->
-            binding.date.text = newDate
+        // Observe LiveData from ViewModel for food details
+        homeViewModel.foodDetails.observe(viewLifecycleOwner) { foodDetails ->
+            adapter.submitList(foodDetails) // Update the adapter when the data changes
+        }
 
+        // Observe LiveData for total calories
+        homeViewModel.totalCalories.observe(viewLifecycleOwner) { totalCalories ->
+            binding.totalCalories.text = totalCalories.toString() // Update total calories text
+        }
+
+        // Fetch data initially
+        homeViewModel.fetchAddedFood(date)
+
+        // Observe the date and update the UI when it changes
+        dateModel.dateLiveData.observe(viewLifecycleOwner) { newDate ->
+            binding.date.text = newDate
+            homeViewModel.fetchAddedFood(newDate)
         }
 
         // Handle back arrow click
         binding.dateBackArrow.setOnClickListener {
-            viewModel.moveDateBackward()
-
-            fetchAddedFood()
+            dateModel.moveDateBackward()
+            //fetchAddedFood()
         }
 
         // Handle forward arrow click
         binding.dateForwardArrow.setOnClickListener {
-            viewModel.moveDateForward()
-
-            fetchAddedFood()
+            dateModel.moveDateForward()
+            //fetchAddedFood()
         }
 
         // nav to search
@@ -80,54 +88,15 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
         }
 
+        Log.d("trace","cal = ${homeViewModel.totalCalories.value}")
     }
 
-
-    @SuppressLint("NotifyDataSetChanged")
-    fun fetchAddedFood() {
-        db = FirebaseFirestore.getInstance()
-        val uid = FirebaseAuth.getInstance().currentUser?.uid
-        val date = dateModel.dateLiveData.value.toString()
-        if (uid != null) {
-            // Reset the food list and calories before fetching new data
-            foodList.clear()
-            calories = 0.0
-            binding.totalCalories.text = calories.toString() // Display reset total calories
-
-            val documentReference = db.collection("AddFood")
-                .whereEqualTo("user uid", uid)
-                .whereEqualTo("date", date)
-                .get()
-                .addOnSuccessListener { documents ->
-                    documents.forEach {
-                        foodList.add(
-                            FoodDetails(
-                                enrgy = it.getString("enrgy").toString(),
-                                name = it.getString("name").toString(),
-                                carb = it.getString("carb").toString(),
-                                protien = it.getString("protien").toString(),
-                                fats = it.getString("fats").toString(),
-                                uid = it.getString("user uid").toString()
-                            )
-                        )
-                        val cal = it.getString("enrgy")
-                        calories += cal?.toDouble() ?: 0.0 // Accumulate calories
-                        Log.d("Firestore", "${it.id} (foodList) => ${foodList}")
-                    }
-
-                    // Update the total calories after processing all documents
-                    binding.totalCalories.text = calories.toString()
-                    adapter.notifyDataSetChanged() // Notify adapter to refresh data after adding all items
-
-
-                }
-                .addOnFailureListener { exception ->
-                    Log.w("Firestore", "Error getting food: ", exception)
-                }
+    fun updateTotalCalories(caloriesToRemove: Double) {
+        homeViewModel.totalCalories.value?.let { currentValue ->
+            val updatedCalories = currentValue - caloriesToRemove
+            homeViewModel.setTotalCalories(updatedCalories)
         }
     }
-
-
 
     override fun onDestroy() {
         super.onDestroy()

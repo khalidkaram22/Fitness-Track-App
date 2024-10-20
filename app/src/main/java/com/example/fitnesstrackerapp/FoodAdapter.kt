@@ -34,8 +34,6 @@ class FoodAdapter(private val foodList: List<FoodItem> ,private val date: String
         private lateinit var db: FirebaseFirestore
         private val user = Firebase.auth.currentUser
 
-        private val CHANNEL_ID = "fitness_goals_channel"
-        private val NOTIFICATION_ID = 1001
 
         fun bind(foodItem: FoodItem , date: String) {
             binding.textViewFoodName.text = foodItem.description
@@ -91,7 +89,6 @@ class FoodAdapter(private val foodList: List<FoodItem> ,private val date: String
                         .set(food)
                         .addOnSuccessListener {
                             // Successfully added details
-//                            sendNotification()
                             Toast.makeText(binding.root.context, "${foodItem.description} is added", Toast.LENGTH_SHORT).show()
                             Log.d("Firestore", "food added")
                         }

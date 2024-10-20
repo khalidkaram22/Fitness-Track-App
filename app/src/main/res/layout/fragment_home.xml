@@ -7,85 +7,104 @@
     tools:context=".HomeFragment">
 
 
+    <View
+        android:id="@+id/view_tool"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/navy"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toBottomOf="@+id/total_tv" />
+
+    <!-- Date Text -->
     <TextView
         android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:textColor="@color/grey"
         android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="16/10/2024" />
 
+    <!-- Back Arrow -->
     <ImageView
         android:id="@+id/date_back_arrow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:src="@drawable/ic_arrow_back"
         app:layout_constraintBottom_toBottomOf="@+id/date"
         app:layout_constraintEnd_toStartOf="@+id/date"
-        app:layout_constraintTop_toTopOf="@+id/date" />
+        app:layout_constraintTop_toTopOf="@+id/date"
+        app:tint="@color/orange" />
 
-
+    <!-- Forward Arrow -->
     <ImageView
         android:id="@+id/date_forward_arrow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:src="@drawable/ic_arrow_forward"
         app:layout_constraintBottom_toBottomOf="@+id/date"
         app:layout_constraintStart_toEndOf="@+id/date"
-        app:layout_constraintTop_toTopOf="@+id/date" />
+        app:layout_constraintTop_toTopOf="@+id/date"
+        app:tint="@color/orange" />
 
+    <!-- Total Calories Text -->
     <TextView
         android:id="@+id/total_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="8dp"
-        android:text="Total calories"
-        android:textSize="24sp"
+        android:layout_margin="16dp"
+        android:text="Total Calories"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/date" />
 
-
+    <!-- Total Calories Value -->
     <TextView
         android:id="@+id/total_calories"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/edit_text_style"
-        android:padding="8dp"
+        android:padding="16dp"
+        android:textColor="@color/navy"
         android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/total_tv"
         tools:text="2000 cal" />
 
-
+    <!-- Add Food Button -->
     <Button
         android:id="@+id/go_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:background="@drawable/button_style"
+        android:backgroundTint="@color/navy"
         android:drawableEnd="@drawable/ic_add_circle_outline"
-        android:drawableTint="@color/whitepurple"
-        android:text="Add food"
+        android:drawableTint="@color/orange"
+        android:text="@string/add_food"
+        android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/total_calories" />
 
+    <!-- Recycler View for added foods -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_home"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_height="0dp"
+        android:layout_margin="16dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHeight_default="wrap"
         app:layout_constraintTop_toBottomOf="@+id/go_search"
-        tools:layout_editor_absoluteX="-200dp"
         tools:listitem="@layout/item_addedfood" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
